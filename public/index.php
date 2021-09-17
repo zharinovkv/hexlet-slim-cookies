@@ -24,7 +24,6 @@ $app->get('/', function ($request, $response) {
     return $this->get('renderer')->render($response, 'index.phtml', $params);
 });
 
-// BEGIN
 $app->post('/cart-items', function ($request, $response) {
     $item = $request->getParsedBodyParam('item');
     $cart = json_decode($request->getCookieParam('cart', json_encode([])), true);
@@ -46,6 +45,6 @@ $app->delete('/cart-items', function ($request, $response) {
     return $response->withHeader('Set-Cookie', "cart={$encodedCart}")
         ->withRedirect('/');
 });
-// END
+
 
 $app->run();
